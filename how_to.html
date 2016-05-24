@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>How-To</title>
+        <style>
+        
+        body {
+                background-color: lightblue;
+            }
+            h1 {
+                color:red;
+                float: center;
+            }
+            hr {
+                display: block;
+                margin: 0.5em;
+                border-style: inset;
+                border-width: 1px;
+            }
+            BUTTON {
+                background-color: green;
+                border: none;
+                color: white;
+                padding: 15px 32px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 16px;
+                margin: 4px 2px;
+                -moz-transition-duration: 0.4s;
+                -webkit-transition-duration: 0.4s;
+                -o-transition-duration: 0.4s;
+                cursor: pointer;
+                border-radius: 12px;
+                float: center;
+                             }
+            BUTTON:hover {
+                background-color: white;
+                color: green;
+                box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+            }
+            .divboxout {
+                overflow: auto;
+                margin: auto;
+                position: absolute;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                right: 0;
+                width: 120px;
+                height: 120px;
+                z-index: -1;
+                background-color: #00ff00;
+                animation-name: boxin;
+                animation-duration: 10s;
+                animation-iteration-count: infinite;
+            }
+            .divboxin {
+                overflow: auto;
+                margin: auto;
+                position: absolute;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                right: 0;
+                width: 110px;
+                height: 110px;
+                z-index: 1;
+                background-color: #00ff00;
+                animation-name: boxout;
+                animation-duration: 10s;
+                animation-iteration-count: infinite;
+            }
+            .divboxborder1 {
+                overflow: auto;
+                margin: auto;
+                position: absolute;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                right: 0;
+                width: 10px;
+                height: 10px;
+                background-color: #ffffff;
+                animation-name: boxBorder1;
+                animation-duration: 10s;
+                animation-iteration-count: infinite;
+            }
+            .divboxborder2 {
+                overflow: auto;
+                margin: auto;
+                position: absolute;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                right: 0;
+                width: 10px;
+                height: 10px;
+                background-color: #ffffff;
+                animation-name: boxBorder2;
+                animation-duration: 10s;
+                animation-iteration-count: infinite;
+            }
+            @keyframes boxout {
+                0% {
+                    background-color: #000000;
+                }
+                25% {
+                    background-color: #ffffff;
+                }
+                50% {
+                    background-color: #00ff00;
+                }
+                75% {
+                    background-color: #ffffff;
+                }
+                100% {
+                    background-color: #000000;
+                }
+            }
+            @keyframes boxin {
+                0% {
+                    background-color: #00ff00;
+                }
+                25% {
+                    background-color: #ffffff;
+                }
+                50% {
+                    background-color: #000000;
+                }
+                75% {
+                    background-color: #ffffff;
+                }
+                100% {
+                    background-color: #00ff00;
+                }
+            }
+            @keyframes boxBorder1 {
+                0% {
+                    background-color: #000000;
+                    left: 125px;
+                    top: 20;
+                }
+                10% {
+                    left: 125px;
+                    top: 125px;
+                }
+                20% {
+                    left: 0;
+                    top: 125px;
+                }
+                25% {
+                    background-color: #ffffff;
+                }
+                30% {
+                    left: 0;
+                    top: 125px;
+                }
+                40% {
+                    left: -125px;
+                    top: 125px;
+                }
+                50% {
+                    background-color: #00ff00;
+                    left: -125px;
+                    top: 0;
+                }
+                60% {
+                    left: -125px;
+                    top: -125px;
+                }
+                70% {
+                    left: 0;
+                    top: -125px;
+                }
+                75% {
+                    background-color: #ffffff;
+                }
+                80% {
+                    left: 0;
+                    top: -125px;
+                }
+                90% {
+                    left: 125px;
+                    top: -125px;
+                }
+                100% {
+                    background-color: #000000;
+                    left: 125px;
+                    top: 0;
+                }
+            }
+            @keyframes boxBorder2 {
+                0% {
+                    background-color: #000000;
+                    left: -125px;
+                    top: 20;
+                }
+                10% {
+                    left: -125px;
+                    top: -125px;
+                }
+                20% {
+                    left: 0;
+                    top: -125px;
+                }
+                25% {
+                    background-color: #ffffff;
+                }
+                30% {
+                    left: 0;
+                    top: -125px;
+                }
+                40% {
+                    left: 125px;
+                    top: -125px;
+                }
+                50% {
+                    background-color: #00ff00;
+                    left: 125px;
+                    top: 0;
+                }
+                60% {
+                    left: 125px;
+                    top: 125px;
+                }
+                70% {
+                    left: 20;
+                    top: 125px;
+                }
+                75% {
+                    background-color: #ffffff;
+                }
+                80% {
+                    left: 0;
+                    top: 125px;
+                }
+                90% {
+                    left: -125px;
+                    top: 125px;
+                }
+                100% {
+                    background-color: #000000;
+                    left: -125px;
+                    top: 20;
+                }
+            }
+        </style>
+    </head>
+
+    <body>
+        <center>
+             <h1>How-To</h1>
+
+
+            <hr>
+            <br>
+            <a href="index.html">
+                <button>Home</button>
+            </a>
+            <a href="about.html">
+                <button>About</button>
+            </a>
+            <a href="how_to.html">
+                <button>How-To</button>
+            </a>
+        </center>
+        <h2>This is a manual on how-to use Box. Type something in box and it will  respond. You can also use commands like /time and /game (comming soon)
+        </h2>
+    </body>
+
+</html>
