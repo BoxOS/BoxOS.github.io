@@ -69,10 +69,9 @@
                 left: 50%;
                 top: 190px;
                 transform: translateX(-50%);
-                background-color: #00ff00;
-                animation-name: boxin;
-                animation-duration: 10s;
-                animation-iteration-count: infinite;
+                -wekbit-animation-name: boxin;
+                -wekbit-animation-duration: 10s;
+                -wekbit-animation-iteration-count: infinite;
                 z-index: -2;
                 box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
             }
@@ -83,10 +82,9 @@
                 left: 50%;
                 top: 195px;
                 transform: translateX(-50%);
-                background-color: #00ff00;
-                animation-name: boxout;
-                animation-duration: 10s;
-                animation-iteration-count: infinite;
+                -wekbit-animation-name: boxout;
+                -wekbit-animation-duration: 10s;
+                -wekbit-animation-iteration-count: infinite;
                 z-index: -1;
                 box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
             }
@@ -169,7 +167,7 @@
                     top: 125px;
                 }
                 25% {
-                    background-color: white;
+                    background-color: lightblue;
                 }
                 30% {
                     left: 0;
@@ -248,7 +246,7 @@
                     top: 125px;
                 }
                 75% {
-                    background-color: white;
+                    background-color: lightblue;
                 }
                 80% {
                     left: 0;
@@ -302,7 +300,7 @@
             <br>
             <p>Question (Searched in DataBase)
                 <p>
-                    <input type="text" id="uq" x-webkit-speech />
+                    <input type="text" id="uq"  />
                     <button id="BUTTON" onclick="question();" href="javascript:;">Submit</button>
                     <p>
 
@@ -313,39 +311,29 @@
         <canvas id="canvas"></canvas>
         <!--  __KEVIN ONLY_______________________________________________________ _________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________0000000000000_____________________________________________________________________________0____0_______00000000____0_______________0____00000000000_____0_______0_________0000000000000__________0___________________0____________________________________________________________________________________0___0________0____________0_____________0__________0__________00______0________0____________0_________0_0__________________0____________________________________________________________________________________0__0_________0_____________0___________0___________0__________0_0_____0________0_____________0_______0___0_________________0____________________________________________________________________________________0_0__________0______________0_________0____________0__________0__0____0________0____________________0_____0________________0____________________________________________________________________________________00___________00000000________0_______0_____________0__________0___0___0________0___________________0_______0_______________0____________________________________________________________________________________0_0__________0________________0____0_______________0__________0___0___0________0___________________00000000000______________0__________________________________________________________________________________0___0_________0_________________0___0_______________0__________0_____0_0________0___________________0__________0_____________0__________________________________________________________________________________0___00________0__________________0_0________________0__________0_____000__________0________________0____________0____________0____________________________________________________________________ ___________0_____0________00000000____________0___________000000000000____0________0__________000000000000____0_____________0______0000000000000_______________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________-->
         <script>
+            var audio = new Audio('Crystal Caves (YI_ Crystal Caves).mp3');
             var c = document.getElementById("myCanvas");
             var ctx = c.getContext("2d");
-            var questionWords = [
-                who,
-                what,
-                where,
-                why,
-                when,
-                how
-            ];
-
-            var pronouns = [
-                I,
-                me,
-                myself,
-                you,
-                he,
-                she
-            ];
-
 
             var ng = 0;
 
             function question() {
+                
                 var currentTime = new Date()
                 var hours = currentTime.getHours()
                 var minutes = currentTime.getMinutes()
 
                 if (minutes < 10) {
-                    minutes = "0" + minutes
+                    minutes = "0" + minutes ;
                 }
                 if (document.getElementById('uq').value == "/time") {
                     window.alert("its " + hours + ":" + minutes);
+
+                }
+                if (document.getElementById('uq').value == "/clear") {
+                    localStorage.clear();
+                    window.alert("loacal storage cleared");
+                    return;
 
                 }
                 if (document.getElementById('uq').value == "/game") {
@@ -1026,16 +1014,16 @@
                 var greeting_results = "";
                 var found = false;
                 var greetingWords = ["hello", "hi", "good morning", "good evening", "good night"];
-                var fivequestions = ["how are you","how",];
+                var fivequestions = ["how are you","how","who are you","who are they","who am i","who is","time","bored","when"];
+                var result = [];
                 function greeting(wordlist, main,resultlist,different) {
-                    var result = [wordlist[i] + " to you also!","Im good!", "I dont know how",]
                     empty = [];
                     i = 0;
                     greeting_results = main.join(" ");
-                    found = false;
                     while (i <= greeting_results.length) {
                         if (greeting_results.indexOf(wordlist[i]) > -1) {
-                            if(different = 1){
+                            result = [wordlist[i] + " to you also!","Im good!", "I dont know how","Im box, your personal assistant","I don't know who they are","I dont know your name, but I know your my friend :)","I dont know who","use /time to find the time", "Bored? do /game to play our game", "Did I hear the word game? I love games! do /game to play our featured game","I don't know when"]
+                            if(different == 1){
                                 window.alert(result[resultlist+i]);
                             } else {
                                 window.alert(result[resultlist]);
@@ -1047,6 +1035,7 @@
                         i = i + 1;
                     }
                 }
+                audio.play();
                 var v = "";
                 var str = document.getElementById('uq').value;
                 str = str.toLowerCase();
@@ -1091,10 +1080,84 @@
                 }
                 // listto check, UserQ, item for response, 1 = move, 0 = individual/same.
 
+                
+                var listdata = [];
+                var ansdata = [];
+                if (localStorage.ansdata){
+                    window.alert("answer AI loaded!");
+                    var test2 = localStorage.getItem("listdata");
+                    listdata = JSON.parse(test2);
+                    test2 = localStorage.getItem("ansdata");
+                    ansdata = JSON.parse(test2);
+                }else{
+                    window.alert("No answer AI in local storage. creating one..");
+                    localStorage.setItem("listdata", JSON.stringify(listdata));
+                    localStorage.setItem("ansdata", JSON.stringify(ansdata));
+                    var test2 = localStorage.getItem("listdata");
+                    listdata = JSON.parse(test2);
+                    test2 = localStorage.getItem("ansdata");
+                    ansdata = JSON.parse(test2);//var test is now re-loaded!
+                }
+                var zeta = userQ.join(" ");
+                var reedy;
+                if (zeta == ".clr"){
+                    if (listdata.length != 0){
+                        reedy = prompt("are you sure? the things you going to delete are : " + listdata[listdata.length-1] + " as the keyterm and "+ ansdata[ansdata.length-1] + " as the answer. Say yes or no ")
+                        if (reedy = "yes"){
+                            ansdata.pop();
+                            listdata.pop();
+                            localStorage.setItem("listdata", JSON.stringify(listdata));
+                            localStorage.setItem("ansdata", JSON.stringify(ansdata));
+                            return;
+                        }else{
+                            window.alert("deletion canceled");
+                            return;
+                        }
+                
+                    }else{
+                        window.alert("error: empty");
+                        localStorage.clear();
+                        return;
+                    }    
+                }
+                
+                
+                
                 greeting(greetingWords, userQ,0,0);
                 greeting(fivequestions, userQ,1,1);
-
-                //window.alert(userQ[0] + " is the first word and " + userQ[userQ.length - 1] + " is the last word");
+                if (found == false){
+                    i = 0;
+                    while (i < listdata.length){
+                        if (zeta.indexOf(listdata[i]) !== -1 ) {
+                            window.alert(ansdata[i]);
+                            found = true;
+                            break;
+                        }
+                        i++;
+                    }
+                }
+                if (found == false){
+                    var ask = prompt("Please enter what i was supposed to say, or you can leave it blank");
+                    if (ask !== null && ask != ""){
+                        var keywerd = prompt("Please key words");
+                        keywerd.toLowerCase();
+                        ansdata.toLowerCase();
+                        ansdata.push(ask);
+                        listdata.push(keywerd);
+                        localStorage.setItem("listdata", JSON.stringify(listdata));
+                        localStorage.setItem("ansdata", JSON.stringify(ansdata));
+                    }else{
+                        window.alert("its ok if youre shy :)");
+                    }
+                }
+                
+                
+                
+                
+                
+                //beta-test
+                
+                window.alert(userQ[0] + " is the first word and " + userQ[userQ.length - 1] + " is the last word");
                 if (uq.value === "Hello") {
                     window.alert('Hello, nice to meet you');
                 }
@@ -1104,11 +1167,6 @@
                 document.getElementById('responseCalculations').innerTML = " ";
 
             }
-            if (document.createElement('input').webkitSpeech === undefined) {
-    // Not supported
-} else {
-    // Supported!
-}
         </script>
     </body>
 
