@@ -1140,8 +1140,8 @@
                     var ask = prompt("Please enter what i was supposed to say, or you can leave it blank");
                     if (ask !== null && ask != ""){
                         var keywerd = prompt("Please key words");
-                        keywerd.toLowerCase();
-                        ansdata.toLowerCase();
+                        keywerd = keywerd.toLowerCase();
+                        ask = ask.toLowerCase();
                         ansdata.push(ask);
                         listdata.push(keywerd);
                         localStorage.setItem("listdata", JSON.stringify(listdata));
