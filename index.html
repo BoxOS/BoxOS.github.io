@@ -79,6 +79,9 @@
                 -wekbit-animation-iteration-count: infinite;
                 z-index: -2;
                 box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+                animation-name: boxout;
+                animation-duration: 10s;
+                animation-iteration-count: infinite;
             }
             .divboxin {
                 position: absolute;
@@ -92,6 +95,9 @@
                 -wekbit-animation-iteration-count: infinite;
                 z-index: -1;
                 box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+                animation-name: boxin;
+                animation-duration: 10s;
+                animation-iteration-count: infinite;
             }
             /*.divboxborder1 {
                 overflow: auto;
@@ -324,11 +330,12 @@
         
         
         <script>
-            var audio = new Audio('Crystal Caves (YI_ Crystal Caves).mp3');
+            var audio;
+            var das = 0;
             var c = document.getElementById("myCanvas");
             var ctx = c.getContext("2d");
             
-
+            
           function startDictation() {
  
             if (window.hasOwnProperty('webkitSpeechRecognition')) {
@@ -368,7 +375,8 @@
             var ng = 0;
 
             function question() {
-                
+                var aodio = das % 10 ;
+                audio = new Audio("snd" + aodio + '.mp3');
                 var currentTime = new Date()
                 var hours = currentTime.getHours()
                 var minutes = currentTime.getMinutes()
@@ -380,12 +388,24 @@
                     window.alert("its " + hours + ":" + minutes);
 
                 }
+                if (document.getElementById('uq').value.indexOf("/music")>-1){
+                    audio.pause();
+                    audio.currentTime = 0;
+                    window.alert("changing music..");
+                    das = document.getElementById('uq').value.charAt(6);
+                    window.alert("soundtrack is now" + das%10);
+                    audio.pause();
+                    return;
+                    
+                }
                 if (document.getElementById('uq').value == "/clear") {
                     localStorage.clear();
                     window.alert("loacal storage cleared");
                     return;
 
                 }
+                audio.pause();
+                audio.currentTime = 0.0;
                 if (document.getElementById('uq').value == "/game") {
 
                     /* Customisable map data */
@@ -1088,7 +1108,6 @@
                         i = i + 1;
                     }
                 }
-                audio.play();
                 var v = "";
                 var str = document.getElementById('uq').value;
                 str = str.toLowerCase();
@@ -1203,9 +1222,8 @@
                     }
                 }
                 
-                
-                
-                
+                audio.pause();
+                audio.play();
                 
                 //beta-test
                 
