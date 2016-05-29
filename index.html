@@ -63,7 +63,6 @@
             input[type=text]:focus {
                 width: 70%;
             }
-            
             .speech {
                 position: 4px 5px;
             }
@@ -279,15 +278,15 @@
                 border: 1px solid #333;
                 box-shadow: 0 0 16px 2px rgba(0, 0, 0, 0.8);
             }
-              .speech img {float:width: 40px }
-        
-  
+            .speech img {
+                float:width: 40px;
+            }
         </style>
     </head>
 
     <body>
         <center>
-             <h1>BOX</h1>
+           <h1>BOX</h1>
             <a href="index.html">
                 <button>Home</button>
             </a>
@@ -322,81 +321,84 @@
         </center>
         <canvas id="canvas"></canvas>
         <!--  __KEVIN ONLY_______________________________________________________ _________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________0000000000000_____________________________________________________________________________0____0_______00000000____0_______________0____00000000000_____0_______0_________0000000000000__________0___________________0____________________________________________________________________________________0___0________0____________0_____________0__________0__________00______0________0____________0_________0_0__________________0____________________________________________________________________________________0__0_________0_____________0___________0___________0__________0_0_____0________0_____________0_______0___0_________________0____________________________________________________________________________________0_0__________0______________0_________0____________0__________0__0____0________0____________________0_____0________________0____________________________________________________________________________________00___________00000000________0_______0_____________0__________0___0___0________0___________________0_______0_______________0____________________________________________________________________________________0_0__________0________________0____0_______________0__________0___0___0________0___________________00000000000______________0__________________________________________________________________________________0___0_________0_________________0___0_______________0__________0_____0_0________0___________________0__________0_____________0__________________________________________________________________________________0___00________0__________________0_0________________0__________0_____000__________0________________0____________0____________0____________________________________________________________________ ___________0_____0________00000000____________0___________000000000000____0________0__________000000000000____0_____________0______0000000000000_______________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________-->
-        
-        
+
+
         <script src='https://code.responsivevoice.org/responsivevoice.js'></script>
-        
-        
-        
-        
+
+
+
+
         <script>
             var audio;
             var das = 0;
             var c = document.getElementById("myCanvas");
             var ctx = c.getContext("2d");
-            
-            
-          function startDictation() {
- 
-            if (window.hasOwnProperty('webkitSpeechRecognition')) {
-     
-              var recognition = new webkitSpeechRecognition();
- 
-              recognition.continuous = false;
-              recognition.interimResults = false;
- 
-              recognition.lang = "en-US";
-              recognition.start();
- 
-              recognition.onresult = function(e) {
-                document.getElementById('uq').value
-                                 = e.results[0][0].transcript;
-                recognition.stop();
-                var u = document.getElementById('uq').value;
-                document.getElementById('uq').value = u;
-                question();
-              };
- 
-              recognition.onerror = function(e) {
-                window.alert("err");
-                recognition.stop();
-              }
- 
+
+
+            function startDictation() {
+
+                if (window.hasOwnProperty('webkitSpeechRecognition')) {
+
+                    var recognition = new webkitSpeechRecognition();
+
+                    recognition.continuous = false;
+                    recognition.interimResults = false;
+
+                    recognition.lang = "en-US";
+                    recognition.start();
+
+                    recognition.onresult = function(e) {
+                        document.getElementById('uq').value = e.results[0][0].transcript;
+                        recognition.stop();
+                        var u = document.getElementById('uq').value;
+                        document.getElementById('uq').value = u;
+                        question();
+                    };
+
+                    recognition.onerror = function(e) {
+                        window.alert("err");
+                        recognition.stop();
+                    }
+
+                }
             }
-          }
-            
-            
-            
-            
-            
-            
-            
-            
+
+            function wow() {
+                var sounds = document.getElementsByTagName('audio');
+                for (i = 0; i < sounds.length; i++) sounds[i].pause();
+            };
+
+
+
+
+
+
             var ng = 0;
 
             function question() {
-                var aodio = das % 10 ;
+                var aodio = das % 10;
                 audio = new Audio("snd" + aodio + '.mp3');
+                audio.load();
                 var currentTime = new Date()
                 var hours = currentTime.getHours()
                 var minutes = currentTime.getMinutes()
 
                 if (minutes < 10) {
-                    minutes = "0" + minutes ;
+                    minutes = "0" + minutes;
                 }
                 if (document.getElementById('uq').value == "/time") {
                     window.alert("its " + hours + ":" + minutes);
 
                 }
-                if (document.getElementById('uq').value.indexOf("/music")>-1){
+                if (document.getElementById('uq').value.indexOf("/music") > -1) {
                     audio.pause();
                     audio.currentTime = 0;
                     window.alert("changing music..");
                     das = document.getElementById('uq').value.charAt(6);
-                    window.alert("soundtrack is now" + das%10);
+                    window.alert("soundtrack is now soundtrack " + das % 10);
                     audio.pause();
                     return;
-                    
+
                 }
                 if (document.getElementById('uq').value == "/clear") {
                     localStorage.clear();
@@ -407,7 +409,6 @@
                 audio.pause();
                 audio.currentTime = 0.0;
                 if (document.getElementById('uq').value == "/game") {
-
                     /* Customisable map data */
 
                     var map = {
@@ -1084,19 +1085,20 @@
                 var greeting_results = "";
                 var found = false;
                 var greetingWords = ["hello", "hi", "good morning", "good evening", "good night"];
-                var fivequestions = ["how are you","how","who are you","who are they","who am i","who is","time","bored","when"];
+                var fivequestions = [];
                 var result = [];
+                wow();
 
-                function greeting(wordlist, main,resultlist,different) {
+                function greeting(wordlist, main, resultlist, different) {
                     empty = [];
                     i = 0;
                     greeting_results = main.join(" ");
                     while (i <= greeting_results.length) {
                         if (greeting_results.indexOf(wordlist[i]) > -1) {
-                            result = [wordlist[i] + " to you also!","I'm good!", "I dont know how","Im box, your personal assistant","I don't know who they are","I dont know your name, but I know your my friend :)","I dont know who","use /time to find the time", "Bored? do /game to play our game", "Did I hear the word game? I love games! do /game to play our featured game","I don't know when"]
-                            if(different == 1){
-                                window.alert(result[resultlist+i]);
-                                responsiveVoice.speak(result[resultlist+i])
+                            result = [wordlist[i] + " to you also!", "I'm good!", "I dont know how", "Im box, your personal assistant", "I don't know who they are", "I dont know your name, but I know your my friend :)", "I dont know who", "use /time to find the time", "Bored? do /game to play our game", "Did I hear the word game? I love games! do /game to play our featured game", "I don't know when"]
+                            if (different == 1) {
+                                window.alert(result[resultlist + i]);
+                                responsiveVoice.speak(result[resultlist + i])
                             } else {
                                 window.alert(result[resultlist]);
                                 responsiveVoice.speak(result[resultlist])
@@ -1153,52 +1155,59 @@
                 // listto check, UserQ, item for response, 1 = move, 0 = individual/same.
                 var listdata = [];
                 var ansdata = [];
-                if (localStorage.ansdata){
+                if (localStorage.ansdata) {
                     window.alert("answer AI loaded!");
                     var test2 = localStorage.getItem("listdata");
                     listdata = JSON.parse(test2);
                     test2 = localStorage.getItem("ansdata");
                     ansdata = JSON.parse(test2);
-                }else{
+                } else {
                     window.alert("No answer AI in local storage. creating one..");
                     localStorage.setItem("listdata", JSON.stringify(listdata));
                     localStorage.setItem("ansdata", JSON.stringify(ansdata));
                     var test2 = localStorage.getItem("listdata");
                     listdata = JSON.parse(test2);
                     test2 = localStorage.getItem("ansdata");
-                    ansdata = JSON.parse(test2);//var test is now re-loaded!
+                    ansdata = JSON.parse(test2); //var test is now re-loaded!
                 }
                 var zeta = userQ.join(" ");
                 var reedy;
-                if (zeta == ".clr"){
-                    if (listdata.length != 0){
-                        reedy = prompt("are you sure? the things you going to delete are : " + listdata[listdata.length-1] + " as the keyterm and "+ ansdata[ansdata.length-1] + " as the answer. Say yes or no ")
-                        if (reedy = "yes"){
+                if (zeta == ".clr") {
+                    if (listdata.length != 0) {
+                        reedy = prompt("are you sure? the things you going to delete are : " + listdata[listdata.length - 1] + " as the keyterm and " + ansdata[ansdata.length - 1] + " as the answer. Say yes or no ")
+                        if (reedy = "yes") {
                             ansdata.pop();
                             listdata.pop();
                             localStorage.setItem("listdata", JSON.stringify(listdata));
                             localStorage.setItem("ansdata", JSON.stringify(ansdata));
                             return;
-                        }else{
+                        } else {
                             window.alert("deletion canceled");
                             return;
                         }
-                
-                    }else{
+
+                    } else {
                         window.alert("error: empty");
                         localStorage.clear();
                         return;
-                    }    
+                    }
                 }
-                
-                
-                
-                greeting(greetingWords, userQ,0,0);
-                greeting(fivequestions, userQ,1,1);
-                if (found == false){
+                if (zeta == ".download") {
+                    var textToSave = listdata.concat(ansdata);
+                    var hiddenElement = document.createElement('a');
+                    hiddenElement.href = 'data:attachment/text,' + encodeURI(textToSave);
+                    hiddenElement.target = '_blank';
+                    hiddenElement.download = 'localStorage.txt';
+                    hiddenElement.click();
+                    return;
+
+                }
+
+                greeting(greetingWords, userQ, 0, 0);
+                if (found == false) {
                     i = 0;
-                    while (i < listdata.length){
-                        if (zeta.indexOf(listdata[i]) !== -1 ) {
+                    while (i < listdata.length) {
+                        if (zeta.indexOf(listdata[i]) !== -1) {
                             window.alert(ansdata[i]);
                             responsiveVoice.speak(ansdata[i]);
                             found = true;
@@ -1207,9 +1216,9 @@
                         i++;
                     }
                 }
-                if (found == false){
+                if (found == false) {
                     var ask = prompt("Please enter what i was supposed to say, or you can leave it blank");
-                    if (ask !== null && ask != ""){
+                    if (ask !== null && ask != "") {
                         var keywerd = prompt("Please key words");
                         keywerd = keywerd.toLowerCase();
                         ask = ask.toLowerCase();
@@ -1217,16 +1226,16 @@
                         listdata.push(keywerd);
                         localStorage.setItem("listdata", JSON.stringify(listdata));
                         localStorage.setItem("ansdata", JSON.stringify(ansdata));
-                    }else{
+                    } else {
                         window.alert("its ok if youre shy :)");
                     }
                 }
-                
+
                 audio.pause();
                 audio.play();
-                
+
                 //beta-test
-                
+
                 //  not needed anymore :D  window.alert(userQ[0] + " is the first word and " + userQ[userQ.length - 1] + " is the last word");
                 if (uq.value === "Hello") {
                     window.alert('Hello, nice to meet you');
