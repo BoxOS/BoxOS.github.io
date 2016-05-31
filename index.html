@@ -309,6 +309,9 @@
                 <img onclick="startDictation()" src="mic.gif" />
              </div>
              </form>
+             <div class = "file">
+                 <input type="file" id="fileinput">
+            </div>
             <p>Question (Searched in DataBase)</p>
             <p>
                     <input type="text" id="uq"/>
@@ -324,11 +327,36 @@
 
 
         <script src='https://code.responsivevoice.org/responsivevoice.js'></script>
-
-
-
-
+        
         <script>
+        var keytermm = "asd";
+        var answerd = "asd";
+        function readMultipleFiles(evt) {
+            //Retrieve all the files from the FileList object
+            var files = evt.target.files; 
+    		
+            if (files) {
+                for (var i=0, f; f=files[i]; i++) {
+	                var r = new FileReader();
+                    r.onload = (function(f) {
+                        return function(e) {
+                            var contentsd = e.target.result;
+                            alert(contentsd);
+                            var array = contentsd.split(',');
+                            keytermm = array.splice(0,(array.length / 2));
+                            answerd = array.splice((array.length / 2)-2,array.length);
+                            
+                        };
+                    })(f);
+
+                r.readAsText(f);
+                }   
+        } else {
+	          alert("Failed to load files"); 
+        }
+      }
+  
+      document.getElementById('fileinput').addEventListener('change', readMultipleFiles, false);
             var audio;
             var das = 0;
             var c = document.getElementById("myCanvas");
@@ -367,9 +395,6 @@
                 var sounds = document.getElementsByTagName('audio');
                 for (i = 0; i < sounds.length; i++) sounds[i].pause();
             };
-
-
-
 
 
 
@@ -1096,16 +1121,19 @@
                     while (i <= greeting_results.length) {
                         if (greeting_results.indexOf(wordlist[i]) > -1) {
                             result = [wordlist[i] + " to you also!", "I'm good!", "I dont know how", "Im box, your personal assistant", "I don't know who they are", "I dont know your name, but I know your my friend :)", "I dont know who", "use /time to find the time", "Bored? do /game to play our game", "Did I hear the word game? I love games! do /game to play our featured game", "I don't know when"]
-                            if (different == 1) {
-                                window.alert(result[resultlist + i]);
-                                responsiveVoice.speak(result[resultlist + i])
-                            } else {
-                                window.alert(result[resultlist]);
-                                responsiveVoice.speak(result[resultlist])
+                             if ((greeting_results[greeting_results.indexOf(wordlist[i])-1] == " "  ||greeting_results.indexOf(wordlist[i])-1 < 0) && (greeting_results[greeting_results.indexOf(wordlist[i])+wordlist[i].length] == " " || greeting_results.indexOf((wordlist[i])+wordlist[i].length) < 0)){
+                            
+                                if (different == 1) {
+                                    window.alert(result[resultlist + i]);
+                                    responsiveVoice.speak(result[resultlist + i])
+                                } else {
+                                    window.alert(result[resultlist]);
+                                    responsiveVoice.speak(result[resultlist])
+                                }
+                                empty.push(main[i]);
+                                found = true;
+                                break;
                             }
-                            empty.push(main[i]);
-                            found = true;
-                            break;
                         }
                         i = i + 1;
                     }
@@ -1202,6 +1230,39 @@
                     return;
 
                 }
+                
+                if (zeta == ".replace" && keytermm !== "asd"){
+                    var replaceLocal = prompt("are you sure you want to replace localstorage?");
+                    if (replaceLocal == "yes"){
+                        localStorage.clear();
+                        ansdata = answerd;
+                        listdata = keytermm;
+                        localStorage.setItem("listdata", JSON.stringify(listdata));
+                        localStorage.setItem("ansdata", JSON.stringify(ansdata));
+                        return;
+                    }else{
+                        window.alert("canceled");
+                        return;
+                    }
+                }
+                
+                if (zeta == ".add" && keytermm !== "asd"){
+                    var replaceLocal = prompt("are you sure you want to add localstorage?");
+                    if (replaceLocal == "yes"){
+                        localStorage.clear();
+                        ansdata = ansdata.concat(answerd);
+                        listdata = listdata.concat(keytermm);
+                        localStorage.setItem("listdata", JSON.stringify(listdata));
+                        localStorage.setItem("ansdata", JSON.stringify(ansdata));
+                        return;
+                    }else{
+                        window.alert("canceled");
+                        return;
+                    }
+                }
+                
+                
+                
 
                 greeting(greetingWords, userQ, 0, 0);
                 if (found == false) {
