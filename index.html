@@ -343,8 +343,8 @@
                             var contentsd = e.target.result;
                             alert(contentsd);
                             var array = contentsd.split(',');
-                            keytermm = array.splice(0,(array.length / 2));
-                            answerd = array.splice((array.length / 2)-2,array.length);
+                            keytermm = array.slice(0,(array.length / 2));
+                            answerd = array.slice((array.length / 2),array.length);
                             
                         };
                     })(f);
@@ -1198,6 +1198,8 @@
                     test2 = localStorage.getItem("ansdata");
                     ansdata = JSON.parse(test2); //var test is now re-loaded!
                 }
+                window.alert(ansdata);
+                window.alert(listdata);
                 var zeta = userQ.join(" ");
                 var reedy;
                 if (zeta == ".clr") {
