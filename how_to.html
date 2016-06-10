@@ -6,17 +6,17 @@
         <style>
         
         body {
-                background-color: darkgray;
+                background-color: darkgrey;
             }
-            h1 {
-                color: black;
-                float: center;
-            }
+            
             hr {
                 display: block;
                 margin: 0.5em;
                 border-style: inset;
                 border-width: 1px;
+            }
+            #blue {
+                color:blue;
             }
             BUTTON {
                 background-color: green;
@@ -40,213 +40,7 @@
                 color: green;
                 box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
             }
-            .divboxout {
-                overflow: auto;
-                margin: auto;
-                position: absolute;
-                top: 0;
-                left: 0;
-                bottom: 0;
-                right: 0;
-                width: 120px;
-                height: 120px;
-                z-index: -1;
-                background-color: #00ff00;
-                animation-name: boxin;
-                animation-duration: 10s;
-                animation-iteration-count: infinite;
-            }
-            .divboxin {
-                overflow: auto;
-                margin: auto;
-                position: absolute;
-                top: 0;
-                left: 0;
-                bottom: 0;
-                right: 0;
-                width: 110px;
-                height: 110px;
-                z-index: 1;
-                background-color: #00ff00;
-                animation-name: boxout;
-                animation-duration: 10s;
-                animation-iteration-count: infinite;
-            }
-            .divboxborder1 {
-                overflow: auto;
-                margin: auto;
-                position: absolute;
-                top: 0;
-                left: 0;
-                bottom: 0;
-                right: 0;
-                width: 10px;
-                height: 10px;
-                background-color: #ffffff;
-                animation-name: boxBorder1;
-                animation-duration: 10s;
-                animation-iteration-count: infinite;
-            }
-            .divboxborder2 {
-                overflow: auto;
-                margin: auto;
-                position: absolute;
-                top: 0;
-                left: 0;
-                bottom: 0;
-                right: 0;
-                width: 10px;
-                height: 10px;
-                background-color: #ffffff;
-                animation-name: boxBorder2;
-                animation-duration: 10s;
-                animation-iteration-count: infinite;
-            }
-            @keyframes boxout {
-                0% {
-                    background-color: #000000;
-                }
-                25% {
-                    background-color: #ffffff;
-                }
-                50% {
-                    background-color: #00ff00;
-                }
-                75% {
-                    background-color: #ffffff;
-                }
-                100% {
-                    background-color: #000000;
-                }
-            }
-            @keyframes boxin {
-                0% {
-                    background-color: #00ff00;
-                }
-                25% {
-                    background-color: #ffffff;
-                }
-                50% {
-                    background-color: #000000;
-                }
-                75% {
-                    background-color: #ffffff;
-                }
-                100% {
-                    background-color: #00ff00;
-                }
-            }
-            @keyframes boxBorder1 {
-                0% {
-                    background-color: #000000;
-                    left: 125px;
-                    top: 20;
-                }
-                10% {
-                    left: 125px;
-                    top: 125px;
-                }
-                20% {
-                    left: 0;
-                    top: 125px;
-                }
-                25% {
-                    background-color: #ffffff;
-                }
-                30% {
-                    left: 0;
-                    top: 125px;
-                }
-                40% {
-                    left: -125px;
-                    top: 125px;
-                }
-                50% {
-                    background-color: #00ff00;
-                    left: -125px;
-                    top: 0;
-                }
-                60% {
-                    left: -125px;
-                    top: -125px;
-                }
-                70% {
-                    left: 0;
-                    top: -125px;
-                }
-                75% {
-                    background-color: #ffffff;
-                }
-                80% {
-                    left: 0;
-                    top: -125px;
-                }
-                90% {
-                    left: 125px;
-                    top: -125px;
-                }
-                100% {
-                    background-color: #000000;
-                    left: 125px;
-                    top: 0;
-                }
-            }
-            @keyframes boxBorder2 {
-                0% {
-                    background-color: #000000;
-                    left: -125px;
-                    top: 20;
-                }
-                10% {
-                    left: -125px;
-                    top: -125px;
-                }
-                20% {
-                    left: 0;
-                    top: -125px;
-                }
-                25% {
-                    background-color: #ffffff;
-                }
-                30% {
-                    left: 0;
-                    top: -125px;
-                }
-                40% {
-                    left: 125px;
-                    top: -125px;
-                }
-                50% {
-                    background-color: #00ff00;
-                    left: 125px;
-                    top: 0;
-                }
-                60% {
-                    left: 125px;
-                    top: 125px;
-                }
-                70% {
-                    left: 20;
-                    top: 125px;
-                }
-                75% {
-                    background-color: #ffffff;
-                }
-                80% {
-                    left: 0;
-                    top: 125px;
-                }
-                90% {
-                    left: -125px;
-                    top: 125px;
-                }
-                100% {
-                    background-color: #000000;
-                    left: -125px;
-                    top: 20;
-                }
-            }
-        </style>
+            </style>
     </head>
 
     <body>
@@ -266,8 +60,10 @@
                 <button>How-To</button>
             </a>
         </center>
-        <h2>This is a manual on how-to use Box. Type something in Box and it will respond. However, most answers to most questions have been left blank to allow the user(you) to customize Box the way you would like to. You can also use commands like /time and /game to pull up special responses. 
-        </h2>
+       <h3>Box can be very helpful if you, the user, knows how to use it. Box has a number of functionalities that help it take on other personal assistants like Google Now, Siri, and even Microsoft’s new Cortana. You can do calculations by typing an equation in the search box, such as  500 * 7, and a  JavaScript pop up window will come up saying 3500, which is the answer. You can ask simple questions. For example you can ask “How tall is the empire state building?” Even if it says “I don’t know” it will prompt the user to answer the question and give a key term. If you would like to use the database we have made please download a txt file from the link below, then use .add and type in yes when prommpted to to add the database. Then after the user fills in the forms, if the user asks Box the same question again it will give the answer that the user inputted. As the user asks the question and as Box answers them, Box will actually say what is on the JavaScript popup, using its [British] voice. There is a table below with all the command currently useable.</h3>
+        
+        <img src="How-To Table.png" alt="Mountain View" style="width:1000px;height:400px;">
+        <h3 id="blue"><h3 id="blue">https://goo.gl/MKV7YB</h3>
     </body>
 
 </html>
